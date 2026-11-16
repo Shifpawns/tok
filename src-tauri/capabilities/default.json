@@ -1,0 +1,6 @@
+{
+  "identifier": "default",
+  "description": "No app permissions: the window only shows tiktok.com",
+  "windows": ["main"],
+  "permissions": []
+}

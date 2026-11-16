@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - name: Build
+        working-directory: src-tauri
+        run: cargo build --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tok
+          path: src-tauri/target/release/tok.exe
+          if-no-files-found: error
